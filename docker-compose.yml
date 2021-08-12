@@ -8,3 +8,11 @@ services:
         image: "public.ecr.aws/d8b2x5c9/orange-stack-sat-itau-erp"
         ports: 
             - 9091:9091
+    postgres-dabase:
+        image: "postgres:alpine"
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_PASSWORD: 1234567
+            POSTGRES_DB: db_keymanager
+            POSTGRES_USER: postgres

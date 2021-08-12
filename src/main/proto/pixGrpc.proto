@@ -7,14 +7,31 @@ option objc_class_prefix = "HLW";
 
 package br.com.zupacademy;
 
-service PixGrpcService {
-  rpc send (PixGrpcRequest) returns (PixGrpcReply) {}
+service PixKeyService {
+  rpc generateKey (KeyRequest) returns (KeyResponse) {}
 }
 
-message PixGrpcRequest {
-  string name = 1;
+enum KeyType {
+  UNKNOWN_KEY = 0;
+  CPF = 1;
+  EMAIL = 2;
+  PHONE = 3;
+  RANDOM = 4;
 }
 
-message PixGrpcReply {
-  string message = 1;
+enum AccountType {
+  UNKNOWN_ACCOUNT = 0;
+  CONTA_CORRENTE = 1;
+  CONTA_POUPANCA = 2;
+}
+
+message KeyRequest {
+  KeyType keyType = 1;
+  AccountType accountType = 2;
+  string clientId = 3;
+  string key = 4;
+}
+
+message KeyResponse {
+  string pixId = 1;
 }
