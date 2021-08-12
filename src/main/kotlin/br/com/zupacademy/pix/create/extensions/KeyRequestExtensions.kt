@@ -10,6 +10,9 @@ fun KeyRequest.validate() {
     if (keyType.ordinal != br.com.zupacademy.KeyType.RANDOM_VALUE && key.isNullOrBlank()) {
         throw IllegalArgumentException("A chave não pode ser vazia ou nula")
     }
+    if (key.length > 77) {
+        throw IllegalArgumentException("A chave não pode ter mais que 77 caracteres")
+    }
     if (clientId.isNullOrBlank()) {
         throw IllegalArgumentException("O Id do cliente não pode ser vazio ou nulo")
     }
