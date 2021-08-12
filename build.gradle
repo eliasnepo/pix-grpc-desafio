@@ -43,6 +43,7 @@ dependencies {
     testImplementation("org.testcontainers:postgresql")
     testImplementation("org.testcontainers:testcontainers")
 
+    testImplementation("com.h2database:h2")
 }
 
 
