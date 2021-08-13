@@ -16,8 +16,8 @@ import javax.transaction.Transactional
 
 @Singleton
 class CreateKeyService(
-        @Inject val keyRepository: KeyRepository,
-        @Inject val itauHttpClient: ItauClient,
+        val keyRepository: KeyRepository,
+        val itauHttpClient: ItauClient,
 ) {
 
     fun register(request: KeyRequest): Key {

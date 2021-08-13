@@ -6,10 +6,7 @@ enum class KeyType {
             if (key.isNullOrBlank()) {
                 return false
             }
-            if(!key.matches("^[0-9]{11}\$".toRegex())) {
-                return false
-            }
-            return true
+            return key.matches("^[0-9]{11}\$".toRegex())
         }
     },
     EMAIL {
