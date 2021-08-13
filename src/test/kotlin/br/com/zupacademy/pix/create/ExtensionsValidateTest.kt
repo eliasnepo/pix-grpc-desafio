@@ -3,7 +3,7 @@ package br.com.zupacademy.pix.create
 import br.com.zupacademy.AccountType
 import br.com.zupacademy.KeyRequest
 import br.com.zupacademy.KeyType
-import junit.framework.Assert.*
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
