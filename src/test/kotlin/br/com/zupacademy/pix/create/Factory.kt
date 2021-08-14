@@ -1,12 +1,12 @@
 package br.com.zupacademy.pix.create.factory
 
-import br.com.zupacademy.pix.create.httpclients.dto.AccountsOfClientResponse
-import br.com.zupacademy.pix.create.httpclients.dto.InstituicaoResponse
-import br.com.zupacademy.pix.create.httpclients.dto.TitularResponse
-import br.com.zupacademy.pix.create.model.Account
-import br.com.zupacademy.pix.create.model.Key
-import br.com.zupacademy.pix.create.model.enums.AccountType
-import br.com.zupacademy.pix.create.model.enums.KeyType
+import br.com.zupacademy.shared.httpclients.dto.AccountsOfClientResponse
+import br.com.zupacademy.shared.httpclients.dto.InstituicaoResponse
+import br.com.zupacademy.shared.httpclients.dto.TitularResponse
+import br.com.zupacademy.pix.Account
+import br.com.zupacademy.pix.Key
+import br.com.zupacademy.pix.AccountType
+import br.com.zupacademy.pix.KeyType
 import io.micronaut.context.annotation.Factory
 
 @Factory

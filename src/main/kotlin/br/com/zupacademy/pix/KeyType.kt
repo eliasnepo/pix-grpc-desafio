@@ -1,4 +1,4 @@
-package br.com.zupacademy.pix.create.model.enums
+package br.com.zupacademy.pix
 
 enum class KeyType {
     CPF {

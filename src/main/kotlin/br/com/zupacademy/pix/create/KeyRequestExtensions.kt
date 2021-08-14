@@ -2,9 +2,9 @@ package br.com.zupacademy.pix.create
 
 import br.com.zupacademy.AccountType
 import br.com.zupacademy.KeyRequest
-import br.com.zupacademy.pix.create.model.Account
-import br.com.zupacademy.pix.create.model.Key
-import br.com.zupacademy.pix.create.model.enums.KeyType
+import br.com.zupacademy.pix.Account
+import br.com.zupacademy.pix.Key
+import br.com.zupacademy.pix.KeyType
 import java.util.*
 
 fun KeyRequest.validate() {

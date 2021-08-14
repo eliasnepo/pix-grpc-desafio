@@ -1,4 +1,4 @@
-package br.com.zupacademy.pix.create.validations
+package br.com.zupacademy.shared.validations
 
 import io.micronaut.aop.Around
 import io.micronaut.context.annotation.Type

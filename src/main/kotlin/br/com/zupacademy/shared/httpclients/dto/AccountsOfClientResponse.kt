@@ -1,14 +1,14 @@
-package br.com.zupacademy.pix.create.httpclients.dto
+package br.com.zupacademy.shared.httpclients.dto
 
-import br.com.zupacademy.pix.create.model.enums.AccountType
-import br.com.zupacademy.pix.create.model.Account
+import br.com.zupacademy.pix.AccountType
+import br.com.zupacademy.pix.Account
 
 data class AccountsOfClientResponse (
-    val tipo: AccountType,
-    val instituicao: InstituicaoResponse,
-    val agencia: String,
-    val numero: String,
-    val titular: TitularResponse
+        val tipo: AccountType,
+        val instituicao: InstituicaoResponse,
+        val agencia: String,
+        val numero: String,
+        val titular: TitularResponse
         ) {
 
     fun toModel(): Account {

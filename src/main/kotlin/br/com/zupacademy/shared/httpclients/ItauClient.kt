@@ -1,6 +1,6 @@
-package br.com.zupacademy.pix.create.httpclients
+package br.com.zupacademy.shared.httpclients
 
-import br.com.zupacademy.pix.create.httpclients.dto.AccountsOfClientResponse
+import br.com.zupacademy.shared.httpclients.dto.AccountsOfClientResponse
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable

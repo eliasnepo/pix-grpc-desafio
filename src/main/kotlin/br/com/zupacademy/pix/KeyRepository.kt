@@ -1,6 +1,6 @@
-package br.com.zupacademy.pix.create.repository
+package br.com.zupacademy.pix
 
-import br.com.zupacademy.pix.create.model.Key
+import br.com.zupacademy.pix.Key
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.jpa.repository.JpaRepository
 

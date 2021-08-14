@@ -1,8 +1,7 @@
 package br.com.zupacademy.pix.create
 
-import br.com.zupacademy.pix.create.model.enums.KeyType
+import br.com.zupacademy.pix.KeyType
 import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 

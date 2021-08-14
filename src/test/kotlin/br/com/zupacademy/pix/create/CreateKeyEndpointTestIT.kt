@@ -4,13 +4,10 @@ import br.com.zupacademy.AccountType
 import br.com.zupacademy.KeyRequest
 import br.com.zupacademy.KeyType
 import br.com.zupacademy.PixKeyServiceGrpc
-import br.com.zupacademy.pix.create.exceptions.StatusWithDetails
 import br.com.zupacademy.pix.create.factory.createValidKey
 import br.com.zupacademy.pix.create.factory.itauResponse
-import br.com.zupacademy.pix.create.httpclients.ItauClient
-import br.com.zupacademy.pix.create.model.Account
-import br.com.zupacademy.pix.create.model.Key
-import br.com.zupacademy.pix.create.repository.KeyRepository
+import br.com.zupacademy.shared.httpclients.ItauClient
+import br.com.zupacademy.pix.KeyRepository
 import io.grpc.ManagedChannel
 import io.grpc.Status
 import io.grpc.StatusRuntimeException
@@ -25,17 +22,15 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentMatcher
-import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import java.util.*
 import javax.inject.Singleton
 
 @MicronautTest(transactional = false)
 internal class CreateKeyEndpointTestIT(
-    val keyRepository: KeyRepository,
-    val grpcClient: PixKeyServiceGrpc.PixKeyServiceBlockingStub,
-    val itauClient: ItauClient
+        val keyRepository: KeyRepository,
+        val grpcClient: PixKeyServiceGrpc.PixKeyServiceBlockingStub,
+        val itauClient: ItauClient
 ) {
 
     private val invalidClientId = UUID.randomUUID().toString()

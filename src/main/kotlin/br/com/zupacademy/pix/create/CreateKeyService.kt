@@ -1,18 +1,16 @@
-package br.com.zupacademy.pix.create.controller
+package br.com.zupacademy.pix.create
 
 import br.com.zupacademy.KeyRequest
-import br.com.zupacademy.pix.create.exceptions.ExistsKeyException
-import br.com.zupacademy.pix.create.exceptions.ResourceNotFoundException
-import br.com.zupacademy.pix.create.httpclients.ItauClient
-import br.com.zupacademy.pix.create.httpclients.dto.AccountsOfClientResponse
-import br.com.zupacademy.pix.create.model.Key
-import br.com.zupacademy.pix.create.repository.KeyRepository
+import br.com.zupacademy.shared.exceptions.ExistsKeyException
+import br.com.zupacademy.shared.exceptions.ResourceNotFoundException
+import br.com.zupacademy.shared.httpclients.ItauClient
+import br.com.zupacademy.shared.httpclients.dto.AccountsOfClientResponse
+import br.com.zupacademy.pix.Key
+import br.com.zupacademy.pix.KeyRepository
 import br.com.zupacademy.pix.create.toModel
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.client.exceptions.HttpClientResponseException
-import javax.inject.Inject
 import javax.inject.Singleton
-import javax.transaction.Transactional
 
 @Singleton
 class CreateKeyService(

@@ -1,6 +1,6 @@
-package br.com.zupacademy.pix.create.validations
+package br.com.zupacademy.shared.validations
 
-import br.com.zupacademy.pix.create.exceptions.StatusWithDetails
+import br.com.zupacademy.shared.exceptions.StatusWithDetails
 import io.grpc.BindableService
 import io.grpc.stub.StreamObserver
 import io.micronaut.aop.MethodInterceptor

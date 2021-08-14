@@ -1,4 +1,4 @@
-package br.com.zupacademy.pix.create.exceptions
+package br.com.zupacademy.shared.exceptions
 
 import io.grpc.Metadata
 import io.grpc.Status

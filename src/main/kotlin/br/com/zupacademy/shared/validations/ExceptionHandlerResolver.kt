@@ -1,7 +1,7 @@
-package br.com.zupacademy.pix.create.validations
+package br.com.zupacademy.shared.validations
 
-import br.com.zupacademy.pix.create.exceptions.ResourceNotFoundException
-import br.com.zupacademy.pix.create.exceptions.StatusWithDetails
+import br.com.zupacademy.shared.exceptions.ResourceNotFoundException
+import br.com.zupacademy.shared.exceptions.StatusWithDetails
 import io.grpc.Status
 import javax.inject.Inject
 import javax.inject.Singleton

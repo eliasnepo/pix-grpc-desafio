@@ -1,8 +1,8 @@
-package br.com.zupacademy.pix.create.exceptions.handlers
+package br.com.zupacademy.shared.exceptions.handlers
 
-import br.com.zupacademy.pix.create.exceptions.ExistsKeyException
-import br.com.zupacademy.pix.create.exceptions.StatusWithDetails
-import br.com.zupacademy.pix.create.validations.ExceptionHandler
+import br.com.zupacademy.shared.exceptions.ExistsKeyException
+import br.com.zupacademy.shared.exceptions.StatusWithDetails
+import br.com.zupacademy.shared.validations.ExceptionHandler
 import io.grpc.Status
 import javax.inject.Singleton
 

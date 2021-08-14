@@ -1,10 +1,9 @@
-package br.com.zupacademy.pix.create.controller
+package br.com.zupacademy.pix.create
 
 import br.com.zupacademy.KeyRequest
 import br.com.zupacademy.KeyResponse
 import br.com.zupacademy.PixKeyServiceGrpc
-import br.com.zupacademy.pix.create.validations.ErrorHandler
-import br.com.zupacademy.pix.create.validate
+import br.com.zupacademy.shared.validations.ErrorHandler
 import io.grpc.stub.StreamObserver
 import javax.inject.Singleton
 
