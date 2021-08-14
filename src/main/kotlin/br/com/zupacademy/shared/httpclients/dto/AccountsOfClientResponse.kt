@@ -16,7 +16,8 @@ data class AccountsOfClientResponse (
             agency = agencia,
             number = numero,
             accountType = tipo,
-            ownerName = titular.nome
+            ownerName = titular.nome,
+            ownerId = titular.id
         )
     }
 }

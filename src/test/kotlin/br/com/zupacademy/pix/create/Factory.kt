@@ -8,6 +8,7 @@ import br.com.zupacademy.pix.Key
 import br.com.zupacademy.pix.AccountType
 import br.com.zupacademy.pix.KeyType
 import io.micronaut.context.annotation.Factory
+import java.util.*
 
 @Factory
 fun itauResponse(): AccountsOfClientResponse {
@@ -31,5 +32,5 @@ fun itauResponse(): AccountsOfClientResponse {
 fun createValidKey(): Key {
     return Key(key = "rafa@zup.com.br", keyType = KeyType.EMAIL,
             Account("0001", "1234", accountType = AccountType.CONTA_CORRENTE,
-                    ownerName = "Rafael"))
+                    ownerName = "Rafael", ownerId = UUID.randomUUID().toString()))
 }

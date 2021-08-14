@@ -11,6 +11,15 @@ service PixKeyService {
   rpc generateKey (KeyRequest) returns (KeyResponse) {}
 }
 
+service DeleteKeyService {
+  rpc deleteKey (DeleteKeyRequest) returns (DeleteKeyResponse) {}
+}
+
+message ErroDetails {
+  int32 code = 1;
+  string mensagem = 2;
+}
+
 enum KeyType {
   UNKNOWN_KEY = 0;
   CPF = 1;
@@ -33,5 +42,14 @@ message KeyRequest {
 }
 
 message KeyResponse {
+  string pixId = 1;
+}
+
+message DeleteKeyRequest {
+  string pixId = 1;
+  string clientId = 2;
+}
+
+message DeleteKeyResponse {
   string pixId = 1;
 }

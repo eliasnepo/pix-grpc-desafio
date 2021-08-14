@@ -18,6 +18,9 @@ class Account(
         val accountType: AccountType,
 
         @Column(nullable = false)
+        val ownerId: String,
+
+        @Column(nullable = false)
         val ownerName: String
 ) {
 }
