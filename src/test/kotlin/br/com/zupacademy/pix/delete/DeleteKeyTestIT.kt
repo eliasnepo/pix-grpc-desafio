@@ -94,7 +94,7 @@ internal class DeleteKeyTestIT(
     }
 
     @Test
-    fun `should throw exception when pixId does not exists`() {
+    fun `should throw exception when pixId does not exists in database`() {
         val request = DeleteKeyRequest.newBuilder()
                 .setPixId(UUID.randomUUID().toString())
                 .setClientId(validClientId)
@@ -129,6 +129,40 @@ internal class DeleteKeyTestIT(
             assertEquals(Status.NOT_FOUND.code, status.code)
             assertNotNull(status.description)
             assertTrue(status.description!!.toLowerCase().contains("cliente não existente".toLowerCase()))
+        }
+    }
+
+    @Test
+    fun `should not delete key when pixId is null`() {
+        val request = DeleteKeyRequest.newBuilder()
+                .setClientId(validClientId)
+                .build()
+
+        val error = assertThrows<StatusRuntimeException> {
+            grpcClient.deleteKey(request)
+        }
+
+        with(error) {
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
+            assertTrue(status.description!!.contains("must not be blank"))
+        }
+    }
+
+    @Test
+    fun `should not delete key when clientId is null`() {
+        val request = DeleteKeyRequest.newBuilder()
+                .setPixId(UUID.randomUUID().toString())
+                .build()
+
+        val error = assertThrows<StatusRuntimeException> {
+            grpcClient.deleteKey(request)
+        }
+
+        with(error) {
+            assertEquals(Status.INVALID_ARGUMENT.code, status.code)
+            assertNotNull(status.description)
+            assertTrue(status.description!!.contains("must not be blank"))
         }
     }
 
