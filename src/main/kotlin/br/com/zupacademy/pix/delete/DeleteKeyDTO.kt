@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank
 data class DeleteKeyDTO (
         @field:NotBlank
         @field:ValidUUID(message = "Não é um formato de UUID válido")
-        val pixId: String?,
+        val pixId: String,
 
         @field:NotBlank
         @field:ValidUUID(message = "Não é um formato de UUID válido")

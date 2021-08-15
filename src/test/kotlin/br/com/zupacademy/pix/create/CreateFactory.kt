@@ -32,5 +32,5 @@ fun itauResponse(): AccountsOfClientResponse {
 fun createValidKey(): Key {
     return Key(key = "rafa@zup.com.br", keyType = KeyType.EMAIL,
             Account("0001", "1234", accountType = AccountType.CONTA_CORRENTE,
-                    ownerName = "Rafael", ownerId = UUID.randomUUID().toString()))
+                    ownerName = "Rafael", ownerId = "96be5bb9-6abd-4543-9876-a0605c26606a"))
 }
