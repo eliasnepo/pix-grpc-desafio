@@ -9,6 +9,7 @@ import br.com.zupacademy.pix.Key
 import br.com.zupacademy.pix.KeyRepository
 import br.com.zupacademy.pix.create.toModel
 import io.micronaut.http.HttpResponse
+import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.exceptions.HttpClientResponseException
 import javax.inject.Singleton
 
@@ -27,6 +28,10 @@ class CreateKeyService(
         try {
             itauClientResponse = itauHttpClient.findByClientId(request.clientId, request.accountType)
         } catch (e: HttpClientResponseException) {
+            throw ResourceNotFoundException("O cliente não está na base do Itau.")
+        }
+
+        if (itauClientResponse.status() == HttpStatus.NOT_FOUND) {
             throw ResourceNotFoundException("O cliente não está na base do Itau.")
         }
 
