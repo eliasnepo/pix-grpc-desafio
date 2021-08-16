@@ -4,10 +4,11 @@ import br.com.zupacademy.KeyRequest
 import br.com.zupacademy.shared.exceptions.ExistsKeyException
 import br.com.zupacademy.shared.exceptions.ResourceNotFoundException
 import br.com.zupacademy.shared.httpclients.ItauClient
-import br.com.zupacademy.shared.httpclients.dto.AccountsOfClientResponse
 import br.com.zupacademy.pix.Key
 import br.com.zupacademy.pix.KeyRepository
 import br.com.zupacademy.pix.create.toModel
+import br.com.zupacademy.shared.httpclients.BacenClient
+import br.com.zupacademy.shared.httpclients.dto.*
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.client.exceptions.HttpClientResponseException
@@ -17,6 +18,7 @@ import javax.inject.Singleton
 class CreateKeyService(
         val keyRepository: KeyRepository,
         val itauHttpClient: ItauClient,
+        val bacenHttpClient: BacenClient
 ) {
 
     fun register(request: KeyRequest): Key {
@@ -24,7 +26,7 @@ class CreateKeyService(
             throw ExistsKeyException("Chave já existente.")
         }
 
-        var itauClientResponse: HttpResponse<AccountsOfClientResponse>
+        val itauClientResponse: HttpResponse<AccountsOfClientResponse>
         try {
             itauClientResponse = itauHttpClient.findByClientId(request.clientId, request.accountType)
         } catch (e: HttpClientResponseException) {
@@ -34,9 +36,35 @@ class CreateKeyService(
         if (itauClientResponse.status() == HttpStatus.NOT_FOUND) {
             throw ResourceNotFoundException("O cliente não está na base do Itau.")
         }
+        val bankAccount = itauClientResponse.body()!!
+
+        var keyBacen = ""
+        try {
+            val responseBacen = bacenHttpClient.registerKey(BacenCreateKeyRequest(
+                    keyType = KeyTypeBacen.valueOf(request.keyType.name),
+                    key = request.key,
+                    bankAccount = BankAccountRequest(
+                            description = "Optional",
+                            branch = bankAccount.agencia,
+                            accountNumber = bankAccount.numero,
+                            participant = bankAccount.instituicao.ispb,
+                            accountType = request.accountType.convert()
+                    ),
+                    owner = OwnerRequest(
+                            name = bankAccount.titular.nome,
+                            taxIdNumber = bankAccount.titular.cpf,
+                            type = PersonTypeBacen.LEGAL_PERSON
+                    )
+            ))
+            keyBacen = responseBacen.body()!!.key
+        } catch (e: HttpClientResponseException) {
+            if (e.status == HttpStatus.UNPROCESSABLE_ENTITY) {
+                throw IllegalStateException("Chave pix já registrada.")
+            }
+        }
 
         val account = itauClientResponse.body()!!.toModel()
-        val key = request.toModel(account)
+        val key = request.toModel(account, keyBacen)
         return keyRepository.save(key)
     }
 }

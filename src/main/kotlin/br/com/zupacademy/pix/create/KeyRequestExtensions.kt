@@ -30,9 +30,9 @@ fun KeyRequest.validate() {
     }
 }
 
-fun KeyRequest.toModel(account: Account) : Key {
+fun KeyRequest.toModel(account: Account, keyBacen: String) : Key {
     return Key(
-        key = if (keyType.ordinal == 4) UUID.randomUUID().toString() else key,
+        key = if (keyType.ordinal == 4) keyBacen else key,
         keyType = KeyType.valueOf(keyType.name),
         account = account
     )
