@@ -6,7 +6,7 @@ import br.com.zupacademy.shared.exceptions.ResourceNotFoundException
 import br.com.zupacademy.shared.httpclients.ItauClient
 import br.com.zupacademy.pix.Key
 import br.com.zupacademy.pix.KeyRepository
-import br.com.zupacademy.pix.create.toModel
+import br.com.zupacademy.shared.exceptions.PermissionDeniedException
 import br.com.zupacademy.shared.httpclients.BacenClient
 import br.com.zupacademy.shared.httpclients.dto.*
 import io.micronaut.http.HttpResponse
@@ -59,7 +59,7 @@ class CreateKeyService(
             keyBacen = responseBacen.body()!!.key
         } catch (e: HttpClientResponseException) {
             if (e.status == HttpStatus.UNPROCESSABLE_ENTITY) {
-                throw IllegalStateException("Chave pix já registrada.")
+                throw PermissionDeniedException("Chave pix já registrada.")
             }
         }
 

@@ -1,5 +1,6 @@
 package br.com.zupacademy.shared.validations
 
+import br.com.zupacademy.shared.exceptions.PermissionDeniedException
 import br.com.zupacademy.shared.exceptions.ResourceNotFoundException
 import br.com.zupacademy.shared.exceptions.StatusWithDetails
 import io.grpc.Status
@@ -33,6 +34,7 @@ class DefaultExceptionHandler : ExceptionHandler<Exception> {
             is IllegalArgumentException -> Status.INVALID_ARGUMENT.withDescription(e.message)
             is IllegalStateException -> Status.FAILED_PRECONDITION.withDescription(e.message)
             is ResourceNotFoundException -> Status.NOT_FOUND.withDescription(e.message)
+            is PermissionDeniedException -> Status.PERMISSION_DENIED.withDescription(e.message)
             else -> Status.UNKNOWN
         }
         return StatusWithDetails(status.withCause(e))

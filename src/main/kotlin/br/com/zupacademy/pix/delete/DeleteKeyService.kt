@@ -1,11 +1,13 @@
 package br.com.zupacademy.pix.delete
 
 import br.com.zupacademy.pix.KeyRepository
+import br.com.zupacademy.shared.exceptions.PermissionDeniedException
 import br.com.zupacademy.shared.exceptions.ResourceNotFoundException
 import br.com.zupacademy.shared.httpclients.BacenClient
 import br.com.zupacademy.shared.httpclients.ItauClient
 import br.com.zupacademy.shared.httpclients.dto.BacenDeleteKeyRequest
 import io.micronaut.http.HttpStatus
+import io.micronaut.http.client.exceptions.HttpClientResponseException
 import io.micronaut.validation.Validated
 import javax.inject.Singleton
 import javax.validation.Valid
@@ -31,14 +33,19 @@ class DeleteKeyService(
             throw IllegalStateException("Esse cliente não é dono desta chave pix.")
         }
 
-        val bacenClientResponse = bacenClient.deleteKey(pix.key, BacenDeleteKeyRequest(
-                key = pix.key,
-                participant = itauClientResponse.body()!!.instituicao.ispb
-        ))
+        try {
+            val bacenClientResponse = bacenClient.deleteKey(pix.key, BacenDeleteKeyRequest(
+                    key = pix.key,
+                    participant = itauClientResponse.body()!!.instituicao.ispb
+            ))
 
-        when (bacenClientResponse.status) {
-            HttpStatus.FORBIDDEN -> throw IllegalStateException("Proibido realizar operação.")
-            HttpStatus.NOT_FOUND -> throw ResourceNotFoundException("Chave pix não encontrada.")
+            if (bacenClientResponse.status() == HttpStatus.NOT_FOUND) {
+                throw ResourceNotFoundException("Chave pix não encontrada.")
+            }
+        } catch(e: HttpClientResponseException) {
+            if (e.status == HttpStatus.FORBIDDEN) {
+                throw PermissionDeniedException("Proibido realizar operação.")
+            }
         }
 
         keyRepository.delete(pix)
