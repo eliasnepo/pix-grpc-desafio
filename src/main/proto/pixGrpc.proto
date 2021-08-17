@@ -7,12 +7,18 @@ option objc_class_prefix = "HLW";
 
 package br.com.zupacademy;
 
+import "google/protobuf/timestamp.proto";
+
 service PixKeyService {
   rpc generateKey (KeyRequest) returns (KeyResponse) {}
 }
 
 service DeleteKeyService {
   rpc deleteKey (DeleteKeyRequest) returns (DeleteKeyResponse) {}
+}
+
+service DetailsKeyService {
+  rpc keyDetail (KeyDetailRequest) returns (KeyDetailResponse) {}
 }
 
 message ErroDetails {
@@ -52,4 +58,35 @@ message DeleteKeyRequest {
 
 message DeleteKeyResponse {
   string pixId = 1;
+}
+
+message KeyDetailRequest {
+  message PixIdAndClientId {
+    string clientId = 1;
+    string pixId = 2;
+  }
+
+  oneof filter {
+    PixIdAndClientId pixId = 1;
+    string key = 2;
+  }
+}
+
+message KeyDetailResponse {
+
+  message Account {
+    AccountType accountType = 1;
+    string ownerName = 2;
+    string ownerCpf = 3;
+    string branch = 4;
+    string number = 6;
+    string participant = 7;
+  }
+
+  KeyType keyType = 1;
+  string key = 2;
+  Account account = 3;
+  google.protobuf.Timestamp createdAt = 4;
+  string clientId = 5;
+  string pixId = 6;
 }

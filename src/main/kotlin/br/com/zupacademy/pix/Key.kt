@@ -23,4 +23,8 @@ class Key(
 
     @Column(nullable = false)
     val createdAt: LocalDateTime = LocalDateTime.now()
+
+    fun belongsTo(clientId: String) : Boolean{
+        return this.account.ownerId == clientId
+    }
 }

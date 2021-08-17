@@ -21,6 +21,12 @@ class Account(
         val ownerId: String,
 
         @Column(nullable = false)
-        val ownerName: String
+        val ownerName: String,
+
+        @Column(nullable = false)
+        val ownerCpf: String,
+
+        @Column(nullable = false)
+        val participant: String
 ) {
 }

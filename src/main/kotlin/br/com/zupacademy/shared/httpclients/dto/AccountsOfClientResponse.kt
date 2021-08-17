@@ -17,7 +17,9 @@ data class AccountsOfClientResponse (
             number = numero,
             accountType = tipo,
             ownerName = titular.nome,
-            ownerId = titular.id
+            ownerId = titular.id,
+            ownerCpf = titular.cpf,
+            participant = instituicao.ispb
         )
     }
 }

@@ -1,5 +1,8 @@
 package br.com.zupacademy.shared.httpclients.dto
 
+import br.com.zupacademy.pix.AccountType
+
+
 data class BacenCreateKeyRequest(
         val keyType: KeyTypeBacen,
         val key: String?,
@@ -26,7 +29,17 @@ enum class KeyTypeBacen {
 }
 
 enum class AccountTypeBacen {
-    CACC, SVGS;
+    CACC {
+        override fun converter(): AccountType {
+            return AccountType.CONTA_CORRENTE
+        }
+    }, SVGS {
+        override fun converter(): AccountType {
+            return AccountType.CONTA_POUPANCA
+        }
+    };
+
+    abstract fun converter(): AccountType
 }
 
 enum class PersonTypeBacen {
