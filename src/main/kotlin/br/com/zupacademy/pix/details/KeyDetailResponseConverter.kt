@@ -1,4 +1,4 @@
-package br.com.zupacademy.pix.search.details
+package br.com.zupacademy.pix.details
 
 import br.com.zupacademy.AccountType
 import br.com.zupacademy.KeyDetailResponse
@@ -7,7 +7,7 @@ import com.google.protobuf.Timestamp
 import java.time.ZoneOffset
 
 class KeyDetailResponseConverter {
-    fun convert(keyInfo: br.com.zupacademy.pix.search.details.KeyDetailResponse): KeyDetailResponse {
+    fun convert(keyInfo: br.com.zupacademy.pix.details.KeyDetailResponse): KeyDetailResponse {
         return KeyDetailResponse.newBuilder()
                 .setKeyType(KeyType.valueOf(keyInfo.keyType.name))
                 .setKey(keyInfo.key)

@@ -1,4 +1,4 @@
-package br.com.zupacademy.pix.search.all
+package br.com.zupacademy.pix.listAll
 
 import br.com.zupacademy.*
 import br.com.zupacademy.pix.KeyRepository

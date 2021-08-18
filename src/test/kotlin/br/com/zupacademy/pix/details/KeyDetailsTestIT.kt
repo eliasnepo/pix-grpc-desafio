@@ -1,4 +1,4 @@
-package br.com.zupacademy.pix.search
+package br.com.zupacademy.pix.details
 
 import br.com.zupacademy.DeleteKeyRequest
 import br.com.zupacademy.DeleteKeyServiceGrpc

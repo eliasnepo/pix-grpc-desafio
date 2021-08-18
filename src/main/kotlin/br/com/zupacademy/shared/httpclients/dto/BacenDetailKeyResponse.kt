@@ -2,7 +2,7 @@ package br.com.zupacademy.shared.httpclients.dto
 
 import br.com.zupacademy.pix.Account
 import br.com.zupacademy.pix.KeyType
-import br.com.zupacademy.pix.search.details.KeyDetailResponse
+import br.com.zupacademy.pix.details.KeyDetailResponse
 import java.time.LocalDateTime
 
 data class BacenDetailKeyResponse(

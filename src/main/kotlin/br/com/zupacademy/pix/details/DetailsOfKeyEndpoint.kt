@@ -1,4 +1,4 @@
-package br.com.zupacademy.pix.search.details
+package br.com.zupacademy.pix.details
 
 import br.com.zupacademy.DetailsKeyServiceGrpc
 import br.com.zupacademy.KeyDetailRequest

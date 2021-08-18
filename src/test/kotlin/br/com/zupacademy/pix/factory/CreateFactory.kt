@@ -16,6 +16,13 @@ fun createValidKey(): Key {
 }
 
 @Factory
+fun createDynamicValidKey(key: String, clientId: String): Key {
+    return Key(key = key, keyType = KeyType.CPF,
+            Account("0001", "1234", accountType = AccountType.CONTA_CORRENTE,
+                    ownerName = "Elias", ownerId = clientId, ownerCpf = "12345678900", participant = "60701190"))
+}
+
+@Factory
 fun itauResponse(): AccountsOfClientResponse {
     return AccountsOfClientResponse(
             tipo = AccountType.CONTA_CORRENTE,
