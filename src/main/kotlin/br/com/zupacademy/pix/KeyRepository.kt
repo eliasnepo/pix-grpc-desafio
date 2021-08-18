@@ -9,4 +9,5 @@ import java.util.*
 interface KeyRepository : JpaRepository<Key, String> {
     fun existsByKey(key: String): Boolean
     fun findByKey(key: String): Optional<Key>
+    fun findByAccountOwnerId(ownerId: String): MutableList<Key>
 }

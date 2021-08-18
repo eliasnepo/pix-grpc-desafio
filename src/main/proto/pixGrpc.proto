@@ -21,6 +21,10 @@ service DetailsKeyService {
   rpc keyDetail (KeyDetailRequest) returns (KeyDetailResponse) {}
 }
 
+service AllKeysService {
+  rpc findAll (FindAllKeysRequest) returns (FindAllKeysResponse) {}
+}
+
 message ErroDetails {
   int32 code = 1;
   string mensagem = 2;
@@ -89,4 +93,21 @@ message KeyDetailResponse {
   google.protobuf.Timestamp createdAt = 4;
   string clientId = 5;
   string pixId = 6;
+}
+
+message FindAllKeysRequest {
+  string clientId = 1;
+}
+
+message FindAllKeysResponse {
+  message Key {
+    KeyType keyType = 1;
+    AccountType accountType = 2;
+    string pixId = 3;
+    string key = 4;
+    string clientId = 5;
+    google.protobuf.Timestamp createdAt = 6;
+  }
+
+  repeated Key keys = 1;
 }
