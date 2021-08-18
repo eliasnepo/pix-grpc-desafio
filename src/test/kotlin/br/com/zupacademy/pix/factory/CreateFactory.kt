@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 fun createValidKey(): Key {
     return Key(key = "12345678911", keyType = KeyType.CPF,
             Account("0001", "1234", accountType = AccountType.CONTA_CORRENTE,
-                    ownerName = "Elias", ownerId = "96be5bb9-6abd-4543-9876-a0605c26606a"))
+                    ownerName = "Elias", ownerId = "96be5bb9-6abd-4543-9876-a0605c26606a", ownerCpf = "12345678900", participant = "60701190"))
 }
 
 @Factory

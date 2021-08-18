@@ -1,6 +1,7 @@
 package br.com.zupacademy.pix.search.details
 
 import br.com.zupacademy.pix.KeyRepository
+import br.com.zupacademy.shared.exceptions.PermissionDeniedException
 import br.com.zupacademy.shared.exceptions.ResourceNotFoundException
 import br.com.zupacademy.shared.httpclients.BacenClient
 import br.com.zupacademy.shared.validations.ValidUUID
@@ -35,7 +36,7 @@ sealed class Filter {
                     }
                     .map(KeyDetailResponse.Companion::of)
                     .orElseThrow {
-                        ResourceNotFoundException("Chave pix não existe no sistema")
+                        PermissionDeniedException("Chave pix não pertence a esse cliente.")
                     }
         }
     }
@@ -49,7 +50,7 @@ sealed class Filter {
                         val response = bacenClient.findByKey(key)
                         when (response.status) {
                             HttpStatus.OK -> response.body()?.toModel()
-                            else -> throw ResourceNotFoundException("Chave Pix não consta no sistema do banco central")
+                            else -> throw ResourceNotFoundException("Chave Pix não consta no sistema do banco central.")
                         }
                     }
         }
